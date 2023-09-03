@@ -4,7 +4,7 @@ from textbase.models import OpenAI
 from typing import List
 
 # Load your OpenAI API key
-OpenAI.api_key = "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"
+OpenAI.api_key = ""
 
 # Prompt for GPT-3.5 Turbo
 # SYSTEM_PROMPT = """You are chatting with an AI. There are no specific prefixes for responses, so you can ask or talk about anything you like.
@@ -21,7 +21,7 @@ def on_message(message_history: List[Message], state: dict = None):
     user_messages = message_history[-1]
     user_message = user_messages['content'][0]['value']
     user_message_lower = user_message.lower()
-    
+
     sentiment = analyze_sentiment(user_message,message_history).lower()
     if sentiment=='negative':
         if any(keyword in user_message_lower for keyword in ["stress", "anxiety", "depression", "loneliness"]):
